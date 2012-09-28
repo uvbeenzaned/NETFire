@@ -1,0 +1,11 @@
+name: NETFire
+main: co.networkery.uvbeenzaned.NETFire.NETFire
+version: 1.4.2
+dev-url: http://dev.bukkit.org/server-mods/netfire/
+commands:
+   netfire:
+      description: Master NETFire command.
+      usage: |
+             ----------[NETFire]----------
+             Place netherrack and power it and the there shall be fire!
+             Use /<command> [enable/disable] to enable or disable NETFire globally (only for ops).

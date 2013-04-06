@@ -15,23 +15,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class NETFire extends JavaPlugin{
 
-	public final MyListener ml = new MyListener();
+	public final NETFireListener nfl = new NETFireListener();
 	Logger log;
 	
 	public void onEnable()
 	{
 		log = this.getLogger();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(this.ml, this);
-	    ml.configFile = new File(getDataFolder(), "config.yml");
-	    ml.usersFile = new File(getDataFolder(), "users.yml");
+		pm.registerEvents(this.nfl, this);
+	    nfl.configFile = new File(getDataFolder(), "config.yml");
+	    nfl.usersFile = new File(getDataFolder(), "users.yml");
 	    try {
 	        firstRun();
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    ml.config = new YamlConfiguration();
-	    ml.users = new YamlConfiguration();
+	    nfl.config = new YamlConfiguration();
+	    nfl.users = new YamlConfiguration();
 	    loadYamls();
 		try {
 		    MetricsLite metrics = new MetricsLite(this);
@@ -60,14 +60,14 @@ public class NETFire extends JavaPlugin{
 					{
 						if(args[0].equalsIgnoreCase("enable"))
 						{
-							ml.config.set("enabled", true);
+							nfl.config.set("enabled", true);
 							saveYamls();
 							sendPluginMessage(sender, "Plugin enabled!");
 							return true;
 						}
 						if(args[0].equalsIgnoreCase("disable"))
 						{
-							ml.config.set("enabled", false);
+							nfl.config.set("enabled", false);
 							saveYamls();
 							sendPluginMessage(sender, "Plugin disabled!");
 							return true;
@@ -89,13 +89,13 @@ public class NETFire extends JavaPlugin{
 	}
 	
 	private void firstRun() throws Exception {
-	    if(!ml.configFile.exists()){
-	        ml.configFile.getParentFile().mkdirs();
-	        copy(getResource("config.yml"), ml.configFile);
+	    if(!nfl.configFile.exists()){
+	        nfl.configFile.getParentFile().mkdirs();
+	        copy(getResource("config.yml"), nfl.configFile);
 	    }
-	    if(!ml.usersFile.exists()){
-	        ml.usersFile.getParentFile().mkdirs();
-	        copy(getResource("users.yml"), ml.usersFile);
+	    if(!nfl.usersFile.exists()){
+	        nfl.usersFile.getParentFile().mkdirs();
+	        copy(getResource("users.yml"), nfl.usersFile);
 	    }
 	}
 	
@@ -116,16 +116,16 @@ public class NETFire extends JavaPlugin{
 	
 	public void saveYamls() {
 	    try {
-	        ml.config.save(ml.configFile);
-	        ml.users.save(ml.usersFile);
+	        nfl.config.save(nfl.configFile);
+	        nfl.users.save(nfl.usersFile);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
 	}
 	public void loadYamls() {
 	    try {
-	        ml.config.load(ml.configFile);
-	        ml.users.load(ml.usersFile);
+	        nfl.config.load(nfl.configFile);
+	        nfl.users.load(nfl.usersFile);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

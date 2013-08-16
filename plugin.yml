@@ -1,6 +1,6 @@
 name: NETFire
 main: co.networkery.uvbeenzaned.NETFire.NETFire
-version: 1.4.9
+version: 1.5.2
 dev-url: http://dev.bukkit.org/server-mods/netfire/
 commands:
    netfire:
